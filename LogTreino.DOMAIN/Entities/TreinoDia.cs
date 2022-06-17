@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LogTreino.DATA
+namespace LogTreino.DOMAIN
 {
-    public partial class TreinoRealizado
+    public partial class TreinoDia
     {
-        public TreinoRealizado()
+        public TreinoDia()
         {
             Series = new HashSet<Serie>();
         }
@@ -13,6 +13,7 @@ namespace LogTreino.DATA
         public int Id { get; set; }
         public int? IdAtleta { get; set; }
         public DateTime? Data { get; set; }
+        public int? IdAparelho { get; set; }
 
         public virtual Atleta? IdAtletaNavigation { get; set; }
         public virtual ICollection<Serie> Series { get; set; }

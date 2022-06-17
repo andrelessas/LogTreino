@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LogTreino.DATA
+namespace LogTreino.DOMAIN
 {
     public partial class Atleta
     {
         public Atleta()
         {
-            TreinoRealizados = new HashSet<TreinoRealizado>();
-            Treinos = new HashSet<Treino>();
+            Medida = new HashSet<Medida>();
+            TreinoDia = new HashSet<TreinoDia>();
         }
 
         public int Id { get; set; }
@@ -16,7 +16,7 @@ namespace LogTreino.DATA
         public string? Email { get; set; }
         public string? Senha { get; set; }
 
-        public virtual ICollection<TreinoRealizado> TreinoRealizados { get; set; }
-        public virtual ICollection<Treino> Treinos { get; set; }
+        public virtual ICollection<Medida> Medida { get; set; }
+        public virtual ICollection<TreinoDia> TreinoDia { get; set; }
     }
 }

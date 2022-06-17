@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LogTreino.DATA
+namespace LogTreino.DOMAIN
 {
     public partial class Serie
     {
         public int Id { get; set; }
-        public int? Repeticoes { get; set; }
+        public int? IdTreinoDia { get; set; }
+        public int? Serie1 { get; set; }
         public int? Peso { get; set; }
-        public int? IdTreino { get; set; }
-        public int? IdTreinoRealizado { get; set; }
+        public int? QtdRepeticoes { get; set; }
 
-        public virtual Treino? IdTreinoNavigation { get; set; }
-        public virtual TreinoRealizado? IdTreinoRealizadoNavigation { get; set; }
+        public virtual TreinoDia? IdTreinoDiaNavigation { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LogTreino.DATA
+namespace LogTreino.DOMAIN
 {
     public partial class Aparelho
     {

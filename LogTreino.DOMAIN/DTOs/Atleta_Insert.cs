@@ -7,8 +7,8 @@ namespace LogTreino.DOMAIN.DTOs
 {
     public class Atleta_Insert
     {
-        public string? Nome { get; set; }
-        public string? Email { get; set; }
-        public string? Senha { get; set; }        
+        public string Nome { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }        
     }
 }
