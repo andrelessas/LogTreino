@@ -4,16 +4,21 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.0.2" />
     <PackageReference Include="microsoft.entityframeworkcore" Version="6.0.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LogTreino.DATA\LogTreino.DATA.csproj" />
+    <ProjectReference Include="..\LogTreino.DOMAIN\LogTreino.DOMAIN.csproj" />
   </ItemGroup>
 
 </Project>
