@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LogTreino.API.Controllers
 {
-    [Route("LogTreino")]
+    [ApiController]
     public class ControllerBase : Controller
     {
        

@@ -11,7 +11,8 @@ namespace LogTreino.DOMAIN.Interfaces
     public interface IAtletaService
     {
         Task<PaginacaoDTO> ObterAtletasAsync(Paginacao paginacao);
-        Task<Atleta> ObterAtletaAsync(int id);
+        Task<Atleta> ObterAtletaPorIDAsync(int id);
+        Task<IEnumerable<Atleta>> ObterAtletaPorNome(string nome);
         Task AlterarAtletaAsync(Atleta atleta);
         Task InserirAtletaAsync(Atleta_Insert atletaInsert);
         Task DeleteAtletaAsync(int id);

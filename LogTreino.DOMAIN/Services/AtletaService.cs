@@ -29,11 +29,11 @@ namespace LogTreino.DOMAIN.Services
 
         public async Task DeleteAtletaAsync(int id)
         {
-            var atleta = await _repository.ObterAtletaAsync(id);
+            var atleta = await _repository.ObterAtletaPorIDAsync(id);
             if(atleta == null)
                 throw new ExcecaoPersonalizada("Nenhum atleta encontrado.");
 
-            await _repository.DeletarAtletaAsync(atleta,id);
+            await _repository.DeletarAtletaAsync(atleta);
         }
 
         public async Task InserirAtletaAsync(Atleta_Insert atletaInsert)
@@ -41,13 +41,22 @@ namespace LogTreino.DOMAIN.Services
             await _repository.InserirAtletaAsync(_mapper.Map<Atleta>(atletaInsert));
         }
 
-        public async Task<Atleta> ObterAtletaAsync(int id)
+        public async Task<Atleta> ObterAtletaPorIDAsync(int id)
         {
-            var atleta = await _repository.ObterAtletaAsync(id);
+            var atleta = await _repository.ObterAtletaPorIDAsync(id);
             if(atleta == null)
                 throw new ExcecaoPersonalizada("Nenhum atleta encontrado.");
 
             return atleta;
+        }
+
+        public async Task<IEnumerable<Atleta>> ObterAtletaPorNome(string nome)
+        {
+            var atletas = await _repository.ObterAtletaPorNome(nome);
+            if(atletas == null)
+                throw new ExcecaoPersonalizada("Nenhum atleta encontrado.");
+            
+            return atletas;
         }
 
         public async Task<PaginacaoDTO> ObterAtletasAsync(Paginacao paginacao)

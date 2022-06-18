@@ -24,7 +24,7 @@ namespace LogTreino.DATA.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeletarAtletaAsync(Atleta atleta, int id)
+        public async Task DeletarAtletaAsync(Atleta atleta)
         {
             _context.Remove(atleta);
             await _context.SaveChangesAsync();
@@ -36,14 +36,27 @@ namespace LogTreino.DATA.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Atleta> ObterAtletaAsync(int id)
+        public async Task<Atleta> ObterAtletaPorIDAsync(int id)
         {
-            return await _context.Atleta.FirstAsync(x => x.Id == id);
+            return await _context.Atleta.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<IEnumerable<Atleta>> ObterAtletaPorNome(string nome)
+        {
+            return await _context.Atleta.AsNoTracking()
+                                        .Where(x =>EF.Functions.Like(x.Nome, nome+"%"))
+                                        .Include(x => x.Medida)
+                                        .Include(x => x.TreinoDia)
+                                        .ToListAsync();
         }
 
         public async Task<IEnumerable<Atleta>> ObterAtletasAsync(int currentPage,int limit)
         {
-            return await _context.Atleta.Skip(currentPage).Take(limit).AsNoTracking().ToListAsync();
+            return await _context.Atleta.Skip(currentPage)
+                                        .Take(limit).AsNoTracking()
+                                        .Include(x => x.Medida)
+                                        .Include(x => x.TreinoDia)
+                                        .ToListAsync();
         }
 
         public async Task<int> ObterTotalAtletasAsync()

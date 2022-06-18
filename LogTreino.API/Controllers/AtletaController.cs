@@ -34,7 +34,7 @@ namespace LogTreino.API.Controllers
         [HttpGet("id")]
         public async Task<IActionResult> ObterAtletaPorIdAsync(int id)
         {
-            var atleta = await _service.ObterAtletaAsync(id);
+            var atleta = await _service.ObterAtletaPorIDAsync(id);
             if (atleta == null)
                 return NotFound();
             

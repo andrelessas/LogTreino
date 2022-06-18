@@ -11,9 +11,9 @@ namespace LogTreino.DOMAIN.Validations
     {
         public AtletaValidations()
         {
-            RuleFor(x =>x.Nome).NotEmpty();
-            RuleFor(x =>x.Email).NotEmpty();
-            RuleFor(x =>x.Senha).NotEmpty();
+            RuleFor(x =>x.Nome).NotEmpty().NotNull();
+            RuleFor(x =>x.Email).NotEmpty().NotNull();
+            RuleFor(x =>x.Senha).NotEmpty().NotNull();
         }
     }
 }
