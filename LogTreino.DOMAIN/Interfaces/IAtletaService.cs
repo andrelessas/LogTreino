@@ -10,7 +10,7 @@ namespace LogTreino.DOMAIN.Interfaces
 {
     public interface IAtletaService
     {
-        Task<PaginacaoDTO> ObterAtletasAsync(Paginacao paginacao);
+        Task<Retorno_Paginado> ObterAtletasAsync(PaginacaoDTO paginacao);
         Task<Atleta> ObterAtletaPorIDAsync(int id);
         Task<IEnumerable<Atleta>> ObterAtletaPorNome(string nome);
         Task AlterarAtletaAsync(Atleta atleta);

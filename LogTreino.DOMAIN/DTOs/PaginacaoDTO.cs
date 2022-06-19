@@ -7,7 +7,7 @@ namespace LogTreino.DOMAIN.DTOs
 {
     public class PaginacaoDTO
     {
-        public decimal TotalPaginas { get; set; }
-        public object Dados { get; set; }
+        public int CurrentPage { get; set; }
+        public int Limit { get; set; }
     }
 }

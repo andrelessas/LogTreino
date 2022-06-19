@@ -37,7 +37,7 @@ namespace LogTreino.API.Middleware
 
             var json = new ErrorResponse();
 
-            if (exception is ExcecaoPersonalizada)
+            if (exception is ExcecoesPersonalizadas)
             {
                 json.Status = 400;
 

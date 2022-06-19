@@ -22,9 +22,9 @@ namespace LogTreino.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ObterAtletasAsync([FromQuery]Paginacao paginacao)
+        public async Task<IActionResult> ObterAtletasAsync([FromQuery]PaginacaoDTO paginacaoDTO)
         {
-            var atletas = await _service.ObterAtletasAsync(paginacao);
+            var atletas = await _service.ObterAtletasAsync(paginacaoDTO);
             if (atletas.Dados == null)
                 return NotFound();
             

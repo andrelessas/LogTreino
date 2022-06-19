@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace LogTreino.CORE.ExcecoesPersonalisadas
 {
-    public class ExcecaoPersonalizada : Exception
+    public class ExcecoesPersonalizadas : Exception
     {
-        public ExcecaoPersonalizada(string? message) : base(message)
+        public ExcecoesPersonalizadas(string? message) : base(message)
         {
         }
     }

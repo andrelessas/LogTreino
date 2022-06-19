@@ -20,6 +20,7 @@ namespace LogTreino.API.Configurations
             service.AddFluentValidation(x => 
             {
                 x.RegisterValidatorsFromAssemblyContaining<AtletaValidations>();
+                x.RegisterValidatorsFromAssemblyContaining<MedidasValidations>();
                 x.ValidatorOptions.LanguageManager.Culture = new CultureInfo("pt-BR");
             });
             

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 // using LogTreino.DATA;
 using LogTreino.DOMAIN.DTOs;
+using LogTreino.DOMAIN.Pagination;
 
 namespace LogTreino.DOMAIN.Configuration
 {
@@ -13,6 +14,7 @@ namespace LogTreino.DOMAIN.Configuration
         public AutoMapperConfiguration()
         {
             CreateMap<Atleta,Atleta_Insert>().ReverseMap();
+            CreateMap<Medida,MedidasDTO>().ForMember(x=> x.DataMedicao,y => y.MapFrom(_ => DateTime.Now));
         }
     }
 }

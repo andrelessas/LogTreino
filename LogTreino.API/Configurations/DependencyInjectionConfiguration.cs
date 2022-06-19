@@ -19,6 +19,8 @@ namespace LogTreino.API.Configurations
             services.AddScoped<GlobalExceptionHandlerMiddleware>();
             services.AddScoped<IAtletaService,AtletaService>();
             services.AddScoped<IAtletaRepository,AtletaRepository>();
+            services.AddScoped<IMedidasRepository,MedidasRepository>();
+            services.AddScoped<IMedidasService,MedidasService>();
         }
     }
 }
