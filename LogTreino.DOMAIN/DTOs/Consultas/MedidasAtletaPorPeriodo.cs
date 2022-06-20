@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace LogTreino.DOMAIN.DTOs.Consultas
 {
-    public class MedidasAtletaPorPeriodo
+    public class MedidasAtletaPorPeriodo:PaginacaoDTO
     {
         public int IdAtleta { get; set; }
         public DateTime DataInicial { get; set; }

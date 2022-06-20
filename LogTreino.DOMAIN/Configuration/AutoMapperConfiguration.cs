@@ -14,7 +14,7 @@ namespace LogTreino.DOMAIN.Configuration
         public AutoMapperConfiguration()
         {
             CreateMap<Atleta,Atleta_Insert>().ReverseMap();
-            CreateMap<Medida,MedidasDTO>().ForMember(x=> x.DataMedicao,y => y.MapFrom(_ => DateTime.Now));
+            CreateMap<Medida,MedidasDTO>().ForMember(x=> x.DataMedicao,y => y.MapFrom(_ => DateTime.Now)).ReverseMap();
         }
     }
 }

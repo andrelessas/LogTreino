@@ -11,7 +11,7 @@ namespace LogTreino.DOMAIN.Interfaces
     public interface IMedidasService
     {
         Task<Retorno_Paginado> ObterMedidasPorAtletaAsync(int idAtleta, PaginacaoDTO paginacaoDTO);
-        Task<Retorno_Paginado> ObterMedidasPorPeriodoAsync(MedidasAtletaPorPeriodo medidasAtletaPorPeriodo, PaginacaoDTO paginacaoDTO);
+        Task<Retorno_Paginado> ObterMedidasPorPeriodoAsync(MedidasAtletaPorPeriodo medidasAtletaPorPeriodo);
         Task<Medida> ObterMedidaPorIDAsync(int id);
         Task InserirMedidaAsync(MedidasDTO medidasDTO);
         Task AlterarMedidaAsync(int id,MedidasDTO medidasDTO);

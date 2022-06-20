@@ -53,7 +53,7 @@ namespace LogTreino.DOMAIN.Services
         public async Task<IEnumerable<Atleta>> ObterAtletaPorNome(string nome)
         {
             var atletas = await _repository.ObterAtletaPorNome(nome);
-            if(atletas == null)
+            if(atletas.Count() == 0)
                 throw new ExcecoesPersonalizadas("Nenhum atleta encontrado.");
             
             return atletas;

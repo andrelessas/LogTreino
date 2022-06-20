@@ -53,7 +53,8 @@ namespace LogTreino.DATA.Repository
         public async Task<IEnumerable<Atleta>> ObterAtletasAsync(int currentPage,int limit)
         {
             return await _context.Atleta.Skip(currentPage)
-                                        .Take(limit).AsNoTracking()
+                                        .Take(limit)            
+                                        .AsNoTracking()
                                         .Include(x => x.Medida)
                                         .Include(x => x.TreinoDia)
                                         .ToListAsync();

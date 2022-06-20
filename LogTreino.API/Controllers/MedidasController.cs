@@ -47,7 +47,7 @@ namespace LogTreino.API.Controllers
             return Ok(medida);
         }        
         [HttpGet("medidaporatleta")]
-        public async Task<IActionResult> ObterMedidasPorAtletaAsync(int idAtleta, PaginacaoDTO paginacaoDTO)
+        public async Task<IActionResult> ObterMedidasPorAtletaAsync(int idAtleta, [FromQuery] PaginacaoDTO paginacaoDTO)
         {
             var medidas = await _service.ObterMedidasPorAtletaAsync(idAtleta, paginacaoDTO);
             if(medidas == null)
@@ -56,9 +56,9 @@ namespace LogTreino.API.Controllers
             return Ok(medidas);
         }        
         [HttpGet("medidaporperiodo")]
-        public async Task<IActionResult> ObterMedidasPorPeriodoAsync(MedidasAtletaPorPeriodo medidasAtletaPorPeriodo, PaginacaoDTO paginacaoDTO)
+        public async Task<IActionResult> ObterMedidasPorPeriodoAsync([FromQuery] MedidasAtletaPorPeriodo medidasAtletaPorPeriodo)
         {
-            var medidas = await _service.ObterMedidasPorPeriodoAsync(medidasAtletaPorPeriodo,paginacaoDTO);
+            var medidas = await _service.ObterMedidasPorPeriodoAsync(medidasAtletaPorPeriodo);
             if(medidas == null)
                 return NotFound();
 

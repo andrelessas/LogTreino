@@ -40,6 +40,14 @@ namespace LogTreino.API.Controllers
             
             return Ok(atleta);
         }
+        [HttpGet("pornome")]
+        public async Task<IActionResult> ObterAtletaPorNome(string nome)
+        {
+            var atletas = await _service.ObterAtletaPorNome(nome);
+            if(atletas == null)
+                return NotFound();
+            return Ok(atletas);
+        }
 
         [HttpPost]
         public async Task<IActionResult> InserirAtletaAsync([FromBody]Atleta_Insert atleta_Insert)

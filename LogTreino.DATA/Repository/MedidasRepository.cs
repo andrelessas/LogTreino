@@ -44,16 +44,16 @@ namespace LogTreino.DATA.Repository
 
         public async Task<IEnumerable<Medida>> ObterMedidasPorAtletaAsync(int idAtleta,Paginacao paginacao)
         {
-            return await _context.Medidas.Take(paginacao.CurrentPage)
-                                         .Skip(paginacao.Limit)
+            return await _context.Medidas.Skip(paginacao.CurrentPage) 
+                                         .Take(paginacao.Limit)
                                          .Where(x=> x.IdAtleta == idAtleta)
                                          .ToListAsync();
         }
 
         public async Task<IEnumerable<Medida>> ObterMedidasPorPeriodoAsync(MedidasAtletaPorPeriodo medidasAtletaPorPeriodo, Paginacao paginacao)
         {
-            return await _context.Medidas.Take(paginacao.CurrentPage)
-                                         .Skip(paginacao.Limit)   
+            return await _context.Medidas.Skip(paginacao.CurrentPage) 
+                                         .Take(paginacao.Limit) 
                                          .Where(x => x.IdAtleta == medidasAtletaPorPeriodo.IdAtleta && x.DataMedicao >= medidasAtletaPorPeriodo.DataInicial && x.DataMedicao <= medidasAtletaPorPeriodo.DataFinal)
                                          .ToListAsync();
         }

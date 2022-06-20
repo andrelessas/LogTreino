@@ -16,6 +16,7 @@ namespace LogTreino.DOMAIN.Pagination
             decimal totalPaginas = Math.Ceiling(totalRegistros / (decimal)limit);
             currentPage = currentPage > (totalRegistros / limit) ? (int)totalPaginas : currentPage;
             CurrentPage = limit * (currentPage - 1) < 0 ? 0 : limit * (currentPage - 1);
+            Limit = limit;
             TotalPaginas = totalPaginas;
             return this;
         }

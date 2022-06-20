@@ -7,6 +7,7 @@ namespace LogTreino.DOMAIN.DTOs
 {
     public class MedidasDTO
     {
+        public int IdAtleta { get; set; }
         public DateTime DataMedicao { get; set; }
         public decimal Cintura { get; set; }
         public decimal Barriga { get; set; }
