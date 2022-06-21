@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
 using LogTreino.DOMAIN.Validations;
@@ -31,6 +32,11 @@ namespace LogTreino.API.Configurations
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory,xmlFile);
                 x.IncludeXmlComments(xmlPath);
+            });
+
+            service.AddMvc().AddJsonOptions(o => 
+            {
+                o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             });
 
         }
