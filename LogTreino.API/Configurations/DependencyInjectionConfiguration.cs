@@ -21,6 +21,8 @@ namespace LogTreino.API.Configurations
             services.AddScoped<IAtletaRepository,AtletaRepository>();
             services.AddScoped<IMedidasRepository,MedidasRepository>();
             services.AddScoped<IMedidasService,MedidasService>();
+            services.AddScoped<ITreinoDiaRepository,TreinoDiaRepository>();
+            services.AddScoped<ITreinoDiaServices,TreinoDiaServices>();
         }
     }
 }

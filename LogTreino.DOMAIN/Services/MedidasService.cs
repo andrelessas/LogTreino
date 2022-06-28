@@ -39,18 +39,18 @@ namespace LogTreino.DOMAIN.Services
         }
         public async Task InserirMedidaAsync(MedidasDTO medidasDTO)
         {
-            var atleta = await _atletaRepository.ObterAtletaPorIDAsync(medidasDTO.IdAtleta);
-            if(atleta == null)
-                throw new ExcecoesPersonalizadas("O atleta não existe");
+            // var atleta = await _atletaRepository.ObterAtletaPorIDAsync(medidasDTO.IdAtleta);
+            // if(atleta == null)
+            //     throw new ExcecoesPersonalizadas("O atleta não existe");
                 
             await _medidaRepository.InserirMedidaAsync(_mapper.Map<Medida>(medidasDTO));
         }
-        public async Task<Medida> ObterMedidaPorIDAsync(int id)
+        public async Task<MedidasDTO> ObterMedidaPorIDAsync(int id)
         {
             var medida = await _medidaRepository.ObterMedidaPorIDAsync(id);
             if(medida == null)
                 throw new ExcecoesPersonalizadas("Nenhuma medida encontrada.");
-            return medida;
+            return _mapper.Map<MedidasDTO>(medida);
         }
         public async Task<Retorno_Paginado> ObterMedidasPorAtletaAsync(int idAtleta, PaginacaoDTO paginacaoDTO)
         {
@@ -63,7 +63,7 @@ namespace LogTreino.DOMAIN.Services
             return new Retorno_Paginado
                         {
                             TotalPaginas = _paginacao.TotalPaginas,
-                            Dados = medidas
+                            Dados = _mapper.Map<IEnumerable<MedidasDTO>>(medidas)
                         };
         }
         public async Task<Retorno_Paginado> ObterMedidasPorPeriodoAsync(MedidasAtletaPorPeriodo medidasAtletaPorPeriodo)
@@ -77,7 +77,7 @@ namespace LogTreino.DOMAIN.Services
             return new Retorno_Paginado
                         {
                             TotalPaginas = _paginacao.TotalPaginas,
-                            Dados = medidas
+                            Dados = _mapper.Map<IEnumerable<MedidasDTO>>(medidas)
                         };    
         }
     }

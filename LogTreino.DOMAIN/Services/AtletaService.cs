@@ -37,26 +37,27 @@ namespace LogTreino.DOMAIN.Services
         }
 
         public async Task InserirAtletaAsync(Atleta_Insert atletaInsert)
-        {            
-            await _repository.InserirAtletaAsync(_mapper.Map<Atleta>(atletaInsert));
+        {       
+            var atleta = _mapper.Map<Atleta>(atletaInsert);
+            await _repository.InserirAtletaAsync(atleta);
         }
 
-        public async Task<Atleta> ObterAtletaPorIDAsync(int id)
+        public async Task<Atleta_Insert> ObterAtletaPorIDAsync(int id)
         {
             var atleta = await _repository.ObterAtletaPorIDAsync(id);
             if(atleta == null)
                 throw new ExcecoesPersonalizadas("Nenhum atleta encontrado.");
 
-            return atleta;
+            return _mapper.Map<Atleta_Insert>(atleta);
         }
 
-        public async Task<IEnumerable<Atleta>> ObterAtletaPorNome(string nome)
+        public async Task<IEnumerable<Atleta_Insert>> ObterAtletaPorNome(string nome)
         {
             var atletas = await _repository.ObterAtletaPorNome(nome);
             if(atletas.Count() == 0)
                 throw new ExcecoesPersonalizadas("Nenhum atleta encontrado.");
             
-            return atletas;
+            return _mapper.Map<IEnumerable<Atleta_Insert>>(atletas);
         }
 
         public async Task<Retorno_Paginado> ObterAtletasAsync(PaginacaoDTO paginacaoDTO)
@@ -71,7 +72,7 @@ namespace LogTreino.DOMAIN.Services
             return new Retorno_Paginado
                         {
                             TotalPaginas = _paginacao.TotalPaginas,
-                            Dados = atletas
+                            Dados = _mapper.Map<IEnumerable<Atleta_Insert>>(atletas)
                         };
         }
     }

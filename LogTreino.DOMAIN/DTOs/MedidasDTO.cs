@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 namespace LogTreino.DOMAIN.DTOs
 {
     public class MedidasDTO
-    {
-        public int IdAtleta { get; set; }
-        public DateTime DataMedicao { get; set; }
+    {   
+        public int ID { get; set; }    
+        public DateTime DataMedicao { get; set; } = DateTime.Now;
         public decimal Cintura { get; set; }
         public decimal Barriga { get; set; }
         public decimal Peito { get; set; }
@@ -16,6 +16,5 @@ namespace LogTreino.DOMAIN.DTOs
         public decimal CoxaD { get; set; }
         public decimal BicepsE { get; set; }
         public decimal BicepsD { get; set; }
-   
     }
 }
