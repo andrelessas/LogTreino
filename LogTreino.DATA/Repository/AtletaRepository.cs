@@ -47,6 +47,7 @@ namespace LogTreino.DATA.Repository
                                         .Where(x =>EF.Functions.Like(x.Nome, nome+"%"))
                                         .Include(x => x.Medida)
                                         .Include(x => x.TreinoDia)
+                                        .ThenInclude(x => x.Series)
                                         .ToListAsync();
         }
 
@@ -57,6 +58,7 @@ namespace LogTreino.DATA.Repository
                                         .AsNoTracking()
                                         .Include(x => x.Medida)
                                         .Include(x => x.TreinoDia)
+                                        .ThenInclude(x => x.Series)
                                         .ToListAsync();
         }
 

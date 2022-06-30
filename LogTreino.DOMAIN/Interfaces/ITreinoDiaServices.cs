@@ -12,7 +12,7 @@ namespace LogTreino.DOMAIN.Interfaces
         Task AlterarTreinoDiaAsync(TreinoDiaDTO treinoDiaDTO);
         Task ExcluirTreinoDiaAsync(int id);
         Task<TreinoDiaDTO> ObterTreinoDiaPorID(int id);
-        Task<Retorno_Paginado> ObterTreinosPorAtleta(TreinoDiaDTO treinoDia,PaginacaoDTO paginacaoDTO);
-        Task<Retorno_Paginado> ObterTreinosPorData(TreinoDiaDTO treinoDia,PaginacaoDTO paginacaoDTO);
+        Task<Retorno_Paginado> ObterTreinosPorAtleta(int idAtleta, PaginacaoDTO paginacaoDTO);
+        Task<Retorno_Paginado> ObterTreinosPorPeriodo(DateTime dataInicial, DateTime dataFinal, PaginacaoDTO paginacaoDTO);
     }
 }

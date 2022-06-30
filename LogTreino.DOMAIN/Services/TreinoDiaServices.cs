@@ -49,11 +49,11 @@ namespace LogTreino.DOMAIN.Services
             return treinoDiaDTO;
         }
 
-        public async Task<Retorno_Paginado> ObterTreinosPorAtleta(TreinoDiaDTO treinoDiaDTO, PaginacaoDTO paginacaoDTO)
+        public async Task<Retorno_Paginado> ObterTreinosPorAtleta(int idAtleta, PaginacaoDTO paginacaoDTO)
         {
-            var totalTreinos = await _repository.ObterTotalTreinoDias(treinoDiaDTO.IDAtleta);
+            var totalTreinos = await _repository.ObterTotalTreinoDias(idAtleta);
             _paginacao = _paginacao.TratarPaginacao(paginacaoDTO.CurrentPage,paginacaoDTO.Limit,totalTreinos);
-            var treinoPorAtleta = await _repository.ObterTreinosPorAtleta(_mapper.Map<TreinoDia>(treinoDiaDTO),_paginacao);
+            var treinoPorAtleta = await _repository.ObterTreinosPorAtleta(idAtleta,_paginacao);
             if(treinoPorAtleta == null)
                 throw new ExcecoesPersonalizadas("Nenhum treino encontrado.");
             return new Retorno_Paginado
@@ -63,17 +63,17 @@ namespace LogTreino.DOMAIN.Services
                         };
         }
 
-        public async Task<Retorno_Paginado> ObterTreinosPorData(TreinoDiaDTO treinoDiaDTO, PaginacaoDTO paginacaoDTO)
+        public async Task<Retorno_Paginado> ObterTreinosPorPeriodo(DateTime dataInicial, DateTime dataFinal, PaginacaoDTO paginacaoDTO)
         {
-            var totalTreinos = await _repository.ObterTotalTreinoDias(treinoDiaDTO.Data);
+            var totalTreinos = await _repository.ObterTotalTreinoDias(dataInicial,dataFinal);
             _paginacao = _paginacao.TratarPaginacao(paginacaoDTO.CurrentPage,paginacaoDTO.Limit,totalTreinos);
-            var treinoPorData = _mapper.Map<TreinoDiaDTO>(await _repository.ObterTreinosPorData(_mapper.Map<TreinoDia>(treinoDiaDTO),_paginacao));
+            var treinoPorData = await _repository.ObterTreinosPorPeriodo(dataInicial,dataFinal,_paginacao);
             if(treinoPorData == null)
                 throw new ExcecoesPersonalizadas("Nenhum treino encontrado.");
             return new Retorno_Paginado
                         {
                             TotalPaginas = _paginacao.TotalPaginas,
-                            Dados = _mapper.Map<IEnumerable<TreinoDiaDTO>>(treinoDiaDTO)
+                            Dados = _mapper.Map<IEnumerable<TreinoDiaDTO>>(treinoPorData)
                         };   
         }
     }

@@ -12,10 +12,10 @@ namespace LogTreino.DOMAIN.Interfaces
         Task InserirTreinoDiaAsync(TreinoDia treinoDia);
         Task AlterarTreinoDiaAsync(TreinoDia treinoDia);
         Task ExcluirTreinoDiaAsync(TreinoDia treinoDia);
+        Task<int> ObterTotalTreinoDias(DateTime dataInicial, DateTime dataFinal);
         Task<int> ObterTotalTreinoDias(int idAtleta);
-        Task<int> ObterTotalTreinoDias(DateTime data);
         Task<TreinoDia> ObterTreinoDiaPorID(int id);
-        Task<IEnumerable<TreinoDia>> ObterTreinosPorAtleta(TreinoDia treinoDia,Paginacao paginacao);
-        Task<IEnumerable<TreinoDia>> ObterTreinosPorData(TreinoDia treinoDia,Paginacao paginacao);
+        Task<IEnumerable<TreinoDia>> ObterTreinosPorAtleta(int idAtleta,Paginacao paginacao);
+        Task<IEnumerable<TreinoDia>> ObterTreinosPorPeriodo(DateTime dataInicial, DateTime dataFinal,Paginacao paginacao);
     }
 }

@@ -41,33 +41,37 @@ namespace LogTreino.DATA.Repository
         {
             return await _context.TreinoDia.AsNoTracking().Where(x => x.IdAtleta == idAtleta).CountAsync();
         }
-        public async Task<int> ObterTotalTreinoDias(DateTime data)
+        public async Task<int> ObterTotalTreinoDias(DateTime dataInicial, DateTime dataFinal)
         {
-            return await _context.TreinoDia.AsNoTracking().Where(x => x.Data == data).CountAsync();
+            return await _context.TreinoDia.AsNoTracking()
+                                           .Where(x => x.Data >= dataInicial && x.Data <= dataFinal)
+                                           .CountAsync();
         }
 
         public async Task<TreinoDia> ObterTreinoDiaPorID(int id)
         {
-            return await _context.TreinoDia.FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.TreinoDia.AsNoTracking()
+                                           .Include(x => x.Series) 
+                                           .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<IEnumerable<TreinoDia>> ObterTreinosPorAtleta(TreinoDia treinoDia,Paginacao paginacao)
+        public async Task<IEnumerable<TreinoDia>> ObterTreinosPorAtleta(int idAtleta,Paginacao paginacao)
         {
             return await _context.TreinoDia.Skip(paginacao.CurrentPage)
                                            .Take(paginacao.Limit) 
                                            .AsNoTracking()
                                            .Include(x => x.Series)
-                                           .Where(x => x.IdAtleta == treinoDia.IdAtleta)
+                                           .Where(x => x.IdAtleta == idAtleta)
                                            .ToListAsync();
         }
 
-        public async Task<IEnumerable<TreinoDia>> ObterTreinosPorData(TreinoDia treinoDia,Paginacao paginacao)
+        public async Task<IEnumerable<TreinoDia>> ObterTreinosPorPeriodo(DateTime dataInicial, DateTime dataFinal,Paginacao paginacao)
         {
             return await _context.TreinoDia.Skip(paginacao.CurrentPage)
                                            .Take(paginacao.Limit)
                                            .AsNoTracking()
                                            .Include(x => x.Series)
-                                           .Where(x => x.Data == treinoDia.Data)
+                                           .Where(x => x.Data >= dataInicial && x.Data <= dataFinal)
                                            .ToListAsync();
         }
     }
