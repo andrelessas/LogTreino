@@ -24,30 +24,21 @@ namespace LogTreino.DOMAIN.Services
             _atletaRepository = atletaRepository;
             _mapper = mapper;
         }
-        public async Task AlterarMedidaAsync(int id, MedidasDTO medidasDTO)
+        public async Task AlterarMedidaAsync(MedidasDTO medidasDTO)
         {
-            var medida = _mapper.Map<Medida>(medidasDTO);
-            medida.Id = id;
-            await _medidaRepository.AlterarMedidaAsync(medida);
+            await _medidaRepository.AlterarAsync(_mapper.Map<Medida>(medidasDTO));
         }
         public async Task ExcluirMedidaAsync(int id)
         {
-            var medida = await _medidaRepository.ObterMedidaPorIDAsync(id);
-            if(medida == null)
-                throw new ExcecoesPersonalizadas("Nenhuma medida encontrada.");
-            await _medidaRepository.ExcluirMedidaAsync(medida);
+            await _medidaRepository.ExcluirAsync(id);
         }
         public async Task InserirMedidaAsync(MedidasDTO medidasDTO)
-        {
-            // var atleta = await _atletaRepository.ObterAtletaPorIDAsync(medidasDTO.IdAtleta);
-            // if(atleta == null)
-            //     throw new ExcecoesPersonalizadas("O atleta não existe");
-                
-            await _medidaRepository.InserirMedidaAsync(_mapper.Map<Medida>(medidasDTO));
+        {  
+            await _medidaRepository.InserirAsync(_mapper.Map<Medida>(medidasDTO));
         }
         public async Task<MedidasDTO> ObterMedidaPorIDAsync(int id)
         {
-            var medida = await _medidaRepository.ObterMedidaPorIDAsync(id);
+            var medida = await _medidaRepository.ObterPorIDAsync(id);
             if(medida == null)
                 throw new ExcecoesPersonalizadas("Nenhuma medida encontrada.");
             return _mapper.Map<MedidasDTO>(medida);

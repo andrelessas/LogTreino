@@ -7,14 +7,10 @@ using LogTreino.DOMAIN.Pagination;
 
 namespace LogTreino.DOMAIN.Interfaces
 {
-    public interface ITreinoDiaRepository
+    public interface ITreinoDiaRepository:IRepository<TreinoDia>
     {
-        Task InserirTreinoDiaAsync(TreinoDia treinoDia);
-        Task AlterarTreinoDiaAsync(TreinoDia treinoDia);
-        Task ExcluirTreinoDiaAsync(TreinoDia treinoDia);
         Task<int> ObterTotalTreinoDias(DateTime dataInicial, DateTime dataFinal);
         Task<int> ObterTotalTreinoDias(int idAtleta);
-        Task<TreinoDia> ObterTreinoDiaPorID(int id);
         Task<IEnumerable<TreinoDia>> ObterTreinosPorAtleta(int idAtleta,Paginacao paginacao);
         Task<IEnumerable<TreinoDia>> ObterTreinosPorPeriodo(DateTime dataInicial, DateTime dataFinal,Paginacao paginacao);
     }

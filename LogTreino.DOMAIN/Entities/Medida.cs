@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using LogTreino.DOMAIN.Entities;
 
 namespace LogTreino.DOMAIN
 {
-    public partial class Medida
+    public partial class Medida:Entity
     {
-        public int Id { get; set; }
         public int IdAtleta { get; set; }
         public DateTime DataMedicao { get; set; }
         public decimal Cintura { get; set; }

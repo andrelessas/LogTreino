@@ -14,7 +14,7 @@ namespace LogTreino.DOMAIN.Interfaces
         Task<Retorno_Paginado> ObterMedidasPorPeriodoAsync(MedidasAtletaPorPeriodo medidasAtletaPorPeriodo);
         Task<MedidasDTO> ObterMedidaPorIDAsync(int id);
         Task InserirMedidaAsync(MedidasDTO medidasDTO);
-        Task AlterarMedidaAsync(int id,MedidasDTO medidasDTO);
+        Task AlterarMedidaAsync(MedidasDTO medidasDTO);
         Task ExcluirMedidaAsync(int id);
     }
 }

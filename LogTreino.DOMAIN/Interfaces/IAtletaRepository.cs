@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace LogTreino.DOMAIN.Interfaces
 {
-    public interface IAtletaRepository
+    public interface IAtletaRepository:IRepository<Atleta>
     {
-        Task<IEnumerable<Atleta>> ObterAtletasAsync(int currentPage,int limit);
-        Task<Atleta> ObterAtletaPorIDAsync(int id);
         Task<IEnumerable<Atleta>> ObterAtletaPorNome(string nome);
         Task<int> ObterTotalAtletasAsync();
-        Task AlterarAtletaAsync(Atleta atleta);
-        Task InserirAtletaAsync(Atleta atleta);
-        Task DeletarAtletaAsync(Atleta atleta);
     }
 }

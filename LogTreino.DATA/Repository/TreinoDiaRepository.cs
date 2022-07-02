@@ -11,32 +11,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LogTreino.DATA.Repository
 {
-    public class TreinoDiaRepository : ITreinoDiaRepository
+    public class TreinoDiaRepository : Repository<TreinoDia>, ITreinoDiaRepository
     {
-        private readonly LogTreinoContext _context;
-
-        public TreinoDiaRepository(LogTreinoContext context)
-        {
-            _context = context;
-        }
-        public async Task AlterarTreinoDiaAsync(TreinoDia treinoDia)
-        {
-            _context.Entry(treinoDia).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task ExcluirTreinoDiaAsync(TreinoDia treinoDia)
-        {
-            _context.Remove(treinoDia);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task InserirTreinoDiaAsync(TreinoDia treinoDia)
-        {
-            _context.Add(treinoDia);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task<int> ObterTotalTreinoDias(int idAtleta)
         {
             return await _context.TreinoDia.AsNoTracking().Where(x => x.IdAtleta == idAtleta).CountAsync();
@@ -47,14 +23,6 @@ namespace LogTreino.DATA.Repository
                                            .Where(x => x.Data >= dataInicial && x.Data <= dataFinal)
                                            .CountAsync();
         }
-
-        public async Task<TreinoDia> ObterTreinoDiaPorID(int id)
-        {
-            return await _context.TreinoDia.AsNoTracking()
-                                           .Include(x => x.Series) 
-                                           .FirstOrDefaultAsync(x => x.Id == id);
-        }
-
         public async Task<IEnumerable<TreinoDia>> ObterTreinosPorAtleta(int idAtleta,Paginacao paginacao)
         {
             return await _context.TreinoDia.Skip(paginacao.CurrentPage)

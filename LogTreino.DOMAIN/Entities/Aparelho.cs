@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using LogTreino.DOMAIN.Entities;
 
 namespace LogTreino.DOMAIN
 {
-    public partial class Aparelho
+    public partial class Aparelho:Entity
     {
-        public int Id { get; set; }
         public string Nome { get; set; }
     }
 }

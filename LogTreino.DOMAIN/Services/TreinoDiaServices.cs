@@ -23,27 +23,22 @@ namespace LogTreino.DOMAIN.Services
         }
         public async Task AlterarTreinoDiaAsync(TreinoDiaDTO treinoDiaDTO)
         {
-            var treinoDia = _mapper.Map<TreinoDia>(treinoDiaDTO);
-            await _repository.AlterarTreinoDiaAsync(treinoDia);
+            await _repository.AlterarAsync(_mapper.Map<TreinoDia>(treinoDiaDTO));
         }
 
         public async Task ExcluirTreinoDiaAsync(int id)
         {
-            var treinoDia = await _repository.ObterTreinoDiaPorID(id);
-            if(treinoDia == null)
-                throw new ExcecoesPersonalizadas("treino não encontrado.");
-            await _repository.ExcluirTreinoDiaAsync(treinoDia);
+            await _repository.ExcluirAsync(id);
         }
 
         public async Task InserirTreinoDiaAsync(TreinoDiaDTO treinoDiaDTO)
         {
-            var treinoDias = _mapper.Map<TreinoDia>(treinoDiaDTO);
-            await _repository.InserirTreinoDiaAsync(treinoDias);
+            await _repository.InserirAsync(_mapper.Map<TreinoDia>(treinoDiaDTO));
         }
 
         public async Task<TreinoDiaDTO> ObterTreinoDiaPorID(int id)
         {
-            var treinoDiaDTO = _mapper.Map<TreinoDiaDTO>(await _repository.ObterTreinoDiaPorID(id));
+            var treinoDiaDTO = _mapper.Map<TreinoDiaDTO>(await _repository.ObterPorIDAsync(id));
             if(treinoDiaDTO == null)
                 throw new ExcecoesPersonalizadas("Nenhum treino encontrado.");
             return treinoDiaDTO;
