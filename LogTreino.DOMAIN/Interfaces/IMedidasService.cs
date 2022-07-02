@@ -12,9 +12,9 @@ namespace LogTreino.DOMAIN.Interfaces
     {
         Task<Retorno_Paginado> ObterMedidasPorAtletaAsync(int idAtleta, PaginacaoDTO paginacaoDTO);
         Task<Retorno_Paginado> ObterMedidasPorPeriodoAsync(MedidasAtletaPorPeriodo medidasAtletaPorPeriodo);
-        Task<Medida> ObterMedidaPorIDAsync(int id);
+        Task<MedidasDTO> ObterMedidaPorIDAsync(int id);
         Task InserirMedidaAsync(MedidasDTO medidasDTO);
-        Task AlterarMedidaAsync(int id,MedidasDTO medidasDTO);
+        Task AlterarMedidaAsync(MedidasDTO medidasDTO);
         Task ExcluirMedidaAsync(int id);
     }
 }

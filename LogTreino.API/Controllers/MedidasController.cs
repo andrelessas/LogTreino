@@ -26,9 +26,9 @@ namespace LogTreino.API.Controllers
             return Ok();
         }
         [HttpPut]
-        public async Task<IActionResult> AlterarMedidaAsync(int id,MedidasDTO medidasDTO)
+        public async Task<IActionResult> AlterarMedidaAsync(MedidasDTO medidasDTO)
         {
-            await _service.AlterarMedidaAsync(id,medidasDTO);
+            await _service.AlterarMedidaAsync(medidasDTO);
             return Ok();
         }
         [HttpPost]

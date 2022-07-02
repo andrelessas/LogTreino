@@ -24,46 +24,43 @@ namespace LogTreino.DOMAIN.Services
         }
         public async Task AlterarAtletaAsync(Atleta atleta)
         {
-            await _repository.AlterarAtletaAsync(atleta);
+            await _repository.AlterarAsync(atleta);
         }
 
         public async Task DeleteAtletaAsync(int id)
         {
-            var atleta = await _repository.ObterAtletaPorIDAsync(id);
-            if(atleta == null)
-                throw new ExcecoesPersonalizadas("Nenhum atleta encontrado.");
-
-            await _repository.DeletarAtletaAsync(atleta);
+            await _repository.ExcluirAsync(id);
         }
 
         public async Task InserirAtletaAsync(Atleta_Insert atletaInsert)
-        {            
-            await _repository.InserirAtletaAsync(_mapper.Map<Atleta>(atletaInsert));
+        {       
+            var atleta = _mapper.Map<Atleta>(atletaInsert);
+            await _repository.InserirAsync(atleta);
         }
 
-        public async Task<Atleta> ObterAtletaPorIDAsync(int id)
+        public async Task<Atleta_Insert> ObterAtletaPorIDAsync(int id)
         {
-            var atleta = await _repository.ObterAtletaPorIDAsync(id);
+            var atleta = await _repository.ObterPorIDAsync(id);
             if(atleta == null)
                 throw new ExcecoesPersonalizadas("Nenhum atleta encontrado.");
 
-            return atleta;
+            return _mapper.Map<Atleta_Insert>(atleta);
         }
 
-        public async Task<IEnumerable<Atleta>> ObterAtletaPorNome(string nome)
+        public async Task<IEnumerable<Atleta_Insert>> ObterAtletaPorNome(string nome)
         {
             var atletas = await _repository.ObterAtletaPorNome(nome);
             if(atletas.Count() == 0)
                 throw new ExcecoesPersonalizadas("Nenhum atleta encontrado.");
             
-            return atletas;
+            return _mapper.Map<IEnumerable<Atleta_Insert>>(atletas);
         }
 
         public async Task<Retorno_Paginado> ObterAtletasAsync(PaginacaoDTO paginacaoDTO)
         {
             var qtdAtletas = await _repository.ObterTotalAtletasAsync();
             _paginacao = _paginacao.TratarPaginacao(paginacaoDTO.CurrentPage,paginacaoDTO.Limit,qtdAtletas);
-            var atletas = await _repository.ObterAtletasAsync(_paginacao.CurrentPage,_paginacao.Limit);
+            var atletas = await _repository.ObterTodosAsync(_paginacao);
 
             if(atletas.Count() == 0)
                 throw new ExcecoesPersonalizadas("Nenhum atleta encontrado.");
@@ -71,7 +68,7 @@ namespace LogTreino.DOMAIN.Services
             return new Retorno_Paginado
                         {
                             TotalPaginas = _paginacao.TotalPaginas,
-                            Dados = atletas
+                            Dados = _mapper.Map<IEnumerable<Atleta_Insert>>(atletas)
                         };
         }
     }

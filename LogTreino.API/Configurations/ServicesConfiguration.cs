@@ -36,7 +36,7 @@ namespace LogTreino.API.Configurations
 
             service.AddMvc().AddJsonOptions(o => 
             {
-                o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
 
         }

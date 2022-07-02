@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using LogTreino.DOMAIN.Entities;
 
 namespace LogTreino.DOMAIN
 {
-    public partial class Atleta
+    public partial class Atleta:Entity
     {
         public Atleta()
         {
@@ -11,7 +12,6 @@ namespace LogTreino.DOMAIN
             TreinoDia = new HashSet<TreinoDia>();
         }
 
-        public int Id { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }

@@ -9,44 +9,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LogTreino.DATA.Repository
 {
-    public class AtletaRepository:IAtletaRepository
-    {
-        private readonly LogTreinoContext _context;
-
+    public class AtletaRepository:Repository<Atleta>, IAtletaRepository
+    {  
         public AtletaRepository(LogTreinoContext context)
+            :base(context)
         {
-            _context = context;
+            
         }
-
-        public async Task AlterarAtletaAsync(Atleta atleta)
-        {
-            _context.Entry(atleta).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task DeletarAtletaAsync(Atleta atleta)
-        {
-            _context.Remove(atleta);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task InserirAtletaAsync(Atleta atleta)
-        {
-            _context.Add(atleta);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<Atleta> ObterAtletaPorIDAsync(int id)
-        {
-            return await _context.Atleta.FirstOrDefaultAsync(x => x.Id == id);
-        }
-
         public async Task<IEnumerable<Atleta>> ObterAtletaPorNome(string nome)
         {
             return await _context.Atleta.AsNoTracking()
                                         .Where(x =>EF.Functions.Like(x.Nome, nome+"%"))
                                         .Include(x => x.Medida)
                                         .Include(x => x.TreinoDia)
+                                        .ThenInclude(x => x.Series)
                                         .ToListAsync();
         }
 
@@ -57,6 +33,7 @@ namespace LogTreino.DATA.Repository
                                         .AsNoTracking()
                                         .Include(x => x.Medida)
                                         .Include(x => x.TreinoDia)
+                                        .ThenInclude(x => x.Series)
                                         .ToListAsync();
         }
 
