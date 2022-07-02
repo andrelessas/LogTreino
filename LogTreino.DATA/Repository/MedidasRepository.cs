@@ -12,7 +12,12 @@ using Microsoft.EntityFrameworkCore;
 namespace LogTreino.DATA.Repository
 {
     public class MedidasRepository : Repository<Medida>, IMedidasRepository
-    {      
+    {  
+        public MedidasRepository(LogTreinoContext context)
+            :base(context)
+        {
+            
+        }   
         public async Task<IEnumerable<Medida>> ObterMedidasPorAtletaAsync(int idAtleta,Paginacao paginacao)
         {
             return await _context.Medidas.Skip(paginacao.CurrentPage) 

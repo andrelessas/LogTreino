@@ -14,6 +14,10 @@ namespace LogTreino.DATA.Repository
     public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity,new()
     {
         protected readonly LogTreinoContext _context;
+        public Repository(LogTreinoContext context)
+        {
+            _context = context;
+        }
         public virtual async Task<IEnumerable<TEntity>> ObterTodosAsync(Paginacao paginacao)
         {
             return await _context.Set<TEntity>().Take(paginacao.Limit)

@@ -23,6 +23,8 @@ namespace LogTreino.API.Configurations
             services.AddScoped<IMedidasService,MedidasService>();
             services.AddScoped<ITreinoDiaRepository,TreinoDiaRepository>();
             services.AddScoped<ITreinoDiaServices,TreinoDiaServices>();
+            services.AddScoped<IAparelhoService,AparelhoService>();
+            services.AddScoped<IAparelhoRepository,AparelhoRepository>();
         }
     }
 }

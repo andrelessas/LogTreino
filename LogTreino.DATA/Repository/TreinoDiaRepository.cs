@@ -13,6 +13,11 @@ namespace LogTreino.DATA.Repository
 {
     public class TreinoDiaRepository : Repository<TreinoDia>, ITreinoDiaRepository
     {
+        public TreinoDiaRepository(LogTreinoContext context)
+            :base(context)
+        {
+            
+        }
         public async Task<int> ObterTotalTreinoDias(int idAtleta)
         {
             return await _context.TreinoDia.AsNoTracking().Where(x => x.IdAtleta == idAtleta).CountAsync();

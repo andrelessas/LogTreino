@@ -10,7 +10,12 @@ using Microsoft.EntityFrameworkCore;
 namespace LogTreino.DATA.Repository
 {
     public class AtletaRepository:Repository<Atleta>, IAtletaRepository
-    {
+    {  
+        public AtletaRepository(LogTreinoContext context)
+            :base(context)
+        {
+            
+        }
         public async Task<IEnumerable<Atleta>> ObterAtletaPorNome(string nome)
         {
             return await _context.Atleta.AsNoTracking()

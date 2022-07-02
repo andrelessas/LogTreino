@@ -23,10 +23,11 @@ namespace LogTreino.DOMAIN.Configuration
                 .ReverseMap();
 
             CreateMap<Serie,SerieDTO>().ReverseMap();
+
+            CreateMap<Aparelho,Aparelho_Insert>().ReverseMap();
+            CreateMap<Aparelho,Aparelho_Update>().ReverseMap();
             
-            CreateMap<Medida,MedidasDTO>()
-                // .ForMember(x=> x.DataMedicao,y => y.MapFrom(_ => DateTime.Now))
-                .ReverseMap();
+            CreateMap<Medida,MedidasDTO>().ReverseMap();
         }
     }
 }
