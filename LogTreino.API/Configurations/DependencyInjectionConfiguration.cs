@@ -8,6 +8,7 @@ using LogTreino.DATA.Repository;
 using LogTreino.DOMAIN.Interfaces;
 using LogTreino.DOMAIN.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace LogTreino.API.Configurations
 {
@@ -24,7 +25,7 @@ namespace LogTreino.API.Configurations
             services.AddScoped<ITreinoDiaRepository,TreinoDiaRepository>();
             services.AddScoped<ITreinoDiaServices,TreinoDiaServices>();
             services.AddScoped<IAparelhoService,AparelhoService>();
-            services.AddScoped<IAparelhoRepository,AparelhoRepository>();
+            services.AddScoped<IAparelhoRepository,AparelhoRepository>(); 
         }
     }
 }

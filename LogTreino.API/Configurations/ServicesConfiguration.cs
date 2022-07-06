@@ -22,12 +22,25 @@ namespace LogTreino.API.Configurations
             {
                 x.RegisterValidatorsFromAssemblyContaining<AtletaValidations>();
                 x.RegisterValidatorsFromAssemblyContaining<MedidasValidations>();
+                x.RegisterValidatorsFromAssemblyContaining<Aparelho_InsertValidations>();
+                x.RegisterValidatorsFromAssemblyContaining<Aparelho_UpdateValidations>();
                 x.ValidatorOptions.LanguageManager.Culture = new CultureInfo("pt-BR");
             });
             
             service.AddSwaggerGen(x => 
             {
-                x.SwaggerDoc("v1", new OpenApiInfo { Title = "Log Treino", Version = "v1" });
+                x.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Log Treino",
+                    Version = "1.0",
+                    Description = "Essa Api serve para monitorar o treino do usuário.",
+                    Contact = new OpenApiContact()
+                        {
+                            Name = "André Lessas", 
+                            Email = "andrelessasp@gmail.com", 
+                            Url = new Uri("https://github.com/andrelessas")
+                        }
+                });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory,xmlFile);

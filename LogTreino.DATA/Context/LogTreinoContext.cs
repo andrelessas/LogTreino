@@ -19,7 +19,6 @@ namespace LogTreino.DATA.Context
         public virtual DbSet<Atleta> Atleta { get; set; } = null!;
         public virtual DbSet<Medida> Medidas { get; set; } = null!;
         public virtual DbSet<Serie> Series { get; set; } = null!;
-        public virtual DbSet<Treino> Treinos { get; set; } = null!;
         public virtual DbSet<TreinoDia> TreinoDia { get; set; } = null!;
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
@@ -103,21 +102,6 @@ namespace LogTreino.DATA.Context
                     .HasForeignKey(d => d.IdTreinoDia)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Serie_TreinoDia");
-            });
-
-            modelBuilder.Entity<Treino>(entity =>
-            {
-                entity.ToTable("Treino");
-
-                entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.Descricao)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Nome)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<TreinoDia>(entity =>
