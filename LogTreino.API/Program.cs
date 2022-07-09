@@ -1,5 +1,8 @@
 using LogTreino.API.Configurations;
 using LogTreino.API.Middleware;
+using Microsoft.Extensions.Logging;
+using NLog;
+using NLog.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,8 @@ builder.Services.AddAPIConfiguration();
 builder.Services.AddServicesConfigutation();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
+builder.WebHost.UseNLog();
 
 var app = builder.Build();
 

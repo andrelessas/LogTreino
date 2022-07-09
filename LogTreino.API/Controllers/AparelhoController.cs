@@ -41,7 +41,7 @@ namespace LogTreino.API.Controllers
         [ProducesResponseType(typeof(Retorno_Paginado),StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)] 
         [HttpGet]
-        public async Task<IActionResult> ObterAparelhos(PaginacaoDTO paginacaoDTO)
+        public async Task<IActionResult> ObterAparelhos([FromQuery]PaginacaoDTO paginacaoDTO)
         {
             var aparelhos = await _service.ObterAparelhosAsync(paginacaoDTO);
             if(aparelhos == null)

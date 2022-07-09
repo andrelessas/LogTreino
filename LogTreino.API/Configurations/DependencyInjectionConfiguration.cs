@@ -18,6 +18,7 @@ namespace LogTreino.API.Configurations
         {
             services.AddDbContext<LogTreinoContext>();
             services.AddScoped<GlobalExceptionHandlerMiddleware>();
+            // services.AddTransient<>();
             services.AddScoped<IAtletaService,AtletaService>();
             services.AddScoped<IAtletaRepository,AtletaRepository>();
             services.AddScoped<IMedidasRepository,MedidasRepository>();
